@@ -26,8 +26,9 @@
 
 #import "AppDelegate.h"
 #import "KFURLBar.h"
+#import "KFToolbar.h"
 #import "KFWebKitProgressController.h"
-
+#import "DsMusicPlayer.h"
 #import <WebKit/WebKit.h>
 
 @interface AppDelegate () <KFURLBarDelegate, NSWindowDelegate, KFWebKitProgressDelegate>
@@ -36,24 +37,41 @@
 @property (weak) IBOutlet KFURLBar *urlBar;
 
 @property (weak) IBOutlet WebView *webView;
+@property (weak) IBOutlet KFToolbar *toolbar;
 
 
 @property (nonatomic) float progress;
 
+@property (nonatomic) NSString *tmpFileUrl;
+
+
+@property (nonatomic) NSString *mainUrl;
+
+@property (nonatomic) NSTimer *oneHourTimer;
+
+@property (nonatomic) int elapsed;
+@property (nonatomic) int remains;
 
 @end
 
 
 @implementation AppDelegate
-
+int oneHour;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    oneHour = 60*60;
+    _mainUrl = @"https://www.duosuccess.com";
     self.window.delegate = self;
     
-    self.urlBar.delegate = self;
-    self.urlBar.addressString = @"https://pods.kf-interactive.com";
+    self.webView.frameLoadDelegate = self;
+    _tmpFileUrl = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"/.duosuccess_browser.mid"];
     
+    
+    self.urlBar.delegate = self;
+    self.urlBar.addressString = _mainUrl;
+    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:_mainUrl ]];
+    [self.webView.mainFrame loadRequest:req];
     NSButton *reloadButton = [[NSButton alloc] init];
     [reloadButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [reloadButton setBezelStyle:NSInlineBezelStyle];
@@ -62,15 +80,32 @@
     [reloadButton setAction:@selector(reloadURL:)];
     self.urlBar.leftItems = @[reloadButton];
     
-    NSButton *alertButton = [[NSButton alloc] init];
-    [alertButton setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [alertButton setBezelStyle:NSInlineBezelStyle];
-    [alertButton setTitle:@"Alert"];
-    [alertButton setTarget:self];
-    [alertButton setAction:@selector(showAlert:)];
-    [[alertButton cell] setBackgroundStyle:NSBackgroundStyleRaised];
-    self.urlBar.rightItems = @[alertButton];
+    KFToolbarItem *addItem = [KFToolbarItem toolbarItemWithIcon:[NSImage imageNamed:NSImageNameLeftFacingTriangleTemplate] tag:0];
+    addItem.toolTip = @"Back";
+    
+    KFToolbarItem *removeItem = [KFToolbarItem toolbarItemWithIcon:[NSImage imageNamed:NSImageNameRightFacingTriangleTemplate] tag:1];
+    removeItem.toolTip = @"Forward";
+    
+    
+    self.toolbar.leftItems = @[addItem, removeItem];
+    [self.toolbar setItemSelectionHandler:^(KFToolbarItemSelectionType selectionType, KFToolbarItem *toolbarItem, NSUInteger tag)
+     {
+         switch (tag)
+         {
+             case 0:
+                 [self.webView goBack];
+                 break;
+                 
+             case 1:
+                 [self.webView goForward];
+                 break;
+         }
+         
+     }];
+    
+    
 }
+
 
 
 - (void)reloadURL:(id)sender
@@ -79,19 +114,6 @@
 }
 
 
-- (void)showAlert:(id)sender
-{
-    NSBeginAlertSheet (@"WebKit Objective-C Programming Guide",
-                       @"OK",
-                       nil,
-                       @"Cancel",
-                       [self window],
-                       self,
-                       nil,
-                       nil,
-                       nil,
-                       @"As the user navigates from page to page in your embedded browser, you may want to display the current URL, load status, and error messages. For example, in a web browser application, you might want to display the current URL in a text field that the user can edit.", nil);
-}
 
 
 - (void)updateProgress
@@ -150,16 +172,87 @@
     {
         double delayInSeconds = 1.0;
         
-         __weak typeof(self) weakSelf = self;
+        __weak typeof(self) weakSelf = self;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
-        {
-            weakSelf.urlBar.progressPhase = KFProgressPhaseNone;
-        });
+                       {
+                           weakSelf.urlBar.progressPhase = KFProgressPhaseNone;
+                       });
     }
 }
 
+- (void)webView:(WebView *)sender didStartProvisionalLoadForFrame:(WebFrame *)frame{
+    [[DsMusicPlayer sharedInstance] stopMedia];
+    [self clearTmpFile];
+}
 
+
+- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame{
+    NSLog(@"did finish load for frame.");
+    
+    
+    
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(timerFired) userInfo:nil repeats:NO];
+    NSString *strExtractMidJs = @"document.querySelector('embed').src";
+    NSString *stopMusicJs = @"window.stopmusic = function(){}";
+    
+    NSString *midiUrl = [self.webView stringByEvaluatingJavaScriptFromString:strExtractMidJs];
+    [NSThread detachNewThreadSelector:@selector(startTheBackgroundMusic:) toTarget:self withObject:midiUrl];
+  
+    
+}
+
+-(void)timerFired{
+    NSLog(@"timer fired.");
+}
+-(void)startTheBackgroundMusic: (NSString*)midiUrl{
+    if(midiUrl && ![midiUrl isEqualToString:@""]){
+        NSLog(@"midi url found %@.", midiUrl);
+        
+        NSData *midiContents = [NSData dataWithContentsOfURL: [NSURL URLWithString:midiUrl]];
+        NSLog(@"Saving to %@.", _tmpFileUrl);
+        [midiContents writeToFile:_tmpFileUrl atomically:true ];
+        DsMusicPlayer *mp = [DsMusicPlayer sharedInstance];
+        [mp playMedia:(_tmpFileUrl)];
+        
+        _oneHourTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                        target:self
+                                                      selector:@selector(handleOneHourTimer)
+                                                      userInfo:nil
+                                                       repeats:YES];
+        _elapsed = 0;
+        _remains = oneHour;
+
+    }
+    
+}
+
+-(void)clearTmpFile {
+    NSError *error;
+    [[NSFileManager defaultManager] removeItemAtURL:[NSURL fileURLWithPath: _tmpFileUrl] error:&error];
+    if(error){
+        NSLog(@"Failed to remove %@.", error.description);
+    }else{
+        
+        NSLog(@"Tmp file has been removed.");
+    }
+}
+
+-(void) handleOneHourTimer{
+    self.elapsed++;
+    self.remains--;
+    if(self.remains<0){
+        self.remains = 0;
+    }
+    if(self.elapsed >= oneHour){
+        NSLog(@"1 hour arrived, calling music stop.");
+        [[DsMusicPlayer sharedInstance] stopMedia];
+        [self clearTmpFile];
+
+    }
+
+    
+}
 
 
 

@@ -24,10 +24,18 @@
 		7B6996551819537300CAD9E2 /* KFURLFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D1706D316EAA49F008920CC /* KFURLFormatter.m */; };
 		7B6996561819538000CAD9E2 /* KFURLFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D1706D216EAA49F008920CC /* KFURLFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B6996571819538300CAD9E2 /* KFWebKitProgressController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D42C72F17FEE309009E0EAD /* KFWebKitProgressController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BDB76A9B1886928B00711896 /* KFToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BDB76A981886928B00711896 /* KFToolbar.m */; };
+		BDB76A9C1886928B00711896 /* KFToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BDB76A9A1886928B00711896 /* KFToolbarItem.m */; };
+		BDB76AA218869A4F00711896 /* DsMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BDB76AA018869A4F00711896 /* DsMusicPlayer.m */; };
+		BDB76AA418869C9B00711896 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB76AA318869C9B00711896 /* AVFoundation.framework */; };
+		BDB76AA618869ECE00711896 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB76AA518869ECE00711896 /* CoreAudio.framework */; };
+		BDB76AA818869EDA00711896 /* CoreAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB76AA718869EDA00711896 /* CoreAudioKit.framework */; };
+		BDB76AAA18869F1E00711896 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB76AA918869F1E00711896 /* AudioUnit.framework */; };
+		BDB76AAC18869F4E00711896 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB76AAB18869F4E00711896 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D1706A816EA342F008920CC /* KFURLBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KFURLBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D1706A816EA342F008920CC /* KFURLBarDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KFURLBarDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D1706AB16EA342F008920CC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1D1706AE16EA342F008920CC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		1D1706B016EA342F008920CC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -48,6 +56,17 @@
 		1D42C73017FEE309009E0EAD /* KFWebKitProgressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFWebKitProgressController.m; path = KFURLBar/KFWebKitProgressController.m; sourceTree = "<group>"; };
 		7B6996301819533F00CAD9E2 /* libKFURLBar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKFURLBar.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B6996351819533F00CAD9E2 /* KFURLBar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KFURLBar-Prefix.pch"; sourceTree = "<group>"; };
+		BDB76A971886928B00711896 /* KFToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFToolbar.h; sourceTree = "<group>"; };
+		BDB76A981886928B00711896 /* KFToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFToolbar.m; sourceTree = "<group>"; };
+		BDB76A991886928B00711896 /* KFToolbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFToolbarItem.h; sourceTree = "<group>"; };
+		BDB76A9A1886928B00711896 /* KFToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFToolbarItem.m; sourceTree = "<group>"; };
+		BDB76AA018869A4F00711896 /* DsMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DsMusicPlayer.m; sourceTree = "<group>"; };
+		BDB76AA118869A4F00711896 /* DsMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DsMusicPlayer.h; sourceTree = "<group>"; };
+		BDB76AA318869C9B00711896 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		BDB76AA518869ECE00711896 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		BDB76AA718869EDA00711896 /* CoreAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioKit.framework; path = System/Library/Frameworks/CoreAudioKit.framework; sourceTree = SDKROOT; };
+		BDB76AA918869F1E00711896 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		BDB76AAB18869F4E00711896 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +74,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDB76AAC18869F4E00711896 /* AudioToolbox.framework in Frameworks */,
+				BDB76AAA18869F1E00711896 /* AudioUnit.framework in Frameworks */,
+				BDB76AA818869EDA00711896 /* CoreAudioKit.framework in Frameworks */,
+				BDB76AA618869ECE00711896 /* CoreAudio.framework in Frameworks */,
+				BDB76AA418869C9B00711896 /* AVFoundation.framework in Frameworks */,
 				1D200A5F17FD7FB5005B6D60 /* WebKit.framework in Frameworks */,
 				1D1706AC16EA342F008920CC /* Cocoa.framework in Frameworks */,
 			);
@@ -74,6 +98,11 @@
 		1D17069F16EA342F008920CC = {
 			isa = PBXGroup;
 			children = (
+				BDB76AAB18869F4E00711896 /* AudioToolbox.framework */,
+				BDB76AA918869F1E00711896 /* AudioUnit.framework */,
+				BDB76AA718869EDA00711896 /* CoreAudioKit.framework */,
+				BDB76AA518869ECE00711896 /* CoreAudio.framework */,
+				BDB76AA318869C9B00711896 /* AVFoundation.framework */,
 				1D42C72F17FEE309009E0EAD /* KFWebKitProgressController.h */,
 				1D42C73017FEE309009E0EAD /* KFWebKitProgressController.m */,
 				1D1706CC16EA3680008920CC /* KFURLBar.h */,
@@ -81,7 +110,7 @@
 				1D1706D216EAA49F008920CC /* KFURLFormatter.h */,
 				1D1706D316EAA49F008920CC /* KFURLFormatter.m */,
 				7B6996341819533F00CAD9E2 /* Supporting Files */,
-				1D1706B116EA342F008920CC /* KFURLBarDemo */,
+				1D1706B116EA342F008920CC /* midi-browser */,
 				1D1706A916EA342F008920CC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,7 +118,7 @@
 		1D1706A916EA342F008920CC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D1706A816EA342F008920CC /* KFURLBar.app */,
+				1D1706A816EA342F008920CC /* KFURLBarDemo.app */,
 				7B6996301819533F00CAD9E2 /* libKFURLBar.a */,
 			);
 			name = Products;
@@ -107,7 +136,7 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		1D1706B116EA342F008920CC /* KFURLBarDemo */ = {
+		1D1706B116EA342F008920CC /* midi-browser */ = {
 			isa = PBXGroup;
 			children = (
 				1D1706BD16EA342F008920CC /* AppDelegate.h */,
@@ -116,7 +145,7 @@
 				1D1706CB16EA3680008920CC /* Sources */,
 				1D1706B216EA342F008920CC /* Supporting Files */,
 			);
-			name = KFURLBarDemo;
+			name = "midi-browser";
 			path = KFURLBar;
 			sourceTree = "<group>";
 		};
@@ -135,6 +164,12 @@
 		1D1706CB16EA3680008920CC /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				BDB76AA018869A4F00711896 /* DsMusicPlayer.m */,
+				BDB76AA118869A4F00711896 /* DsMusicPlayer.h */,
+				BDB76A971886928B00711896 /* KFToolbar.h */,
+				BDB76A981886928B00711896 /* KFToolbar.m */,
+				BDB76A991886928B00711896 /* KFToolbarItem.h */,
+				BDB76A9A1886928B00711896 /* KFToolbarItem.m */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -179,7 +214,7 @@
 			);
 			name = KFURLBarDemo;
 			productName = KFURLBar;
-			productReference = 1D1706A816EA342F008920CC /* KFURLBar.app */;
+			productReference = 1D1706A816EA342F008920CC /* KFURLBarDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7B69962F1819533F00CAD9E2 /* KFURLBar */ = {
@@ -246,9 +281,12 @@
 			files = (
 				1D1706B816EA342F008920CC /* main.m in Sources */,
 				1D1706BF16EA342F008920CC /* AppDelegate.m in Sources */,
+				BDB76A9C1886928B00711896 /* KFToolbarItem.m in Sources */,
+				BDB76A9B1886928B00711896 /* KFToolbar.m in Sources */,
 				1D42C73117FEE309009E0EAD /* KFWebKitProgressController.m in Sources */,
 				1D1706CE16EA3680008920CC /* KFURLBar.m in Sources */,
 				1D1706D416EAA49F008920CC /* KFURLFormatter.m in Sources */,
+				BDB76AA218869A4F00711896 /* DsMusicPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +397,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KFURLBar/KFURLBar-Prefix.pch";
 				INFOPLIST_FILE = "KFURLBar/KFURLBar-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = app;
@@ -373,6 +412,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KFURLBar/KFURLBar-Prefix.pch";
 				INFOPLIST_FILE = "KFURLBar/KFURLBar-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = app;
@@ -446,6 +486,7 @@
 				7B69964E1819534000CAD9E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
