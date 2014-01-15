@@ -65,8 +65,10 @@ int oneHour;
     _mainUrl = @"https://www.duosuccess.com";
     [_remainsLabel setStringValue:@""];
     self.window.delegate = self;
-    
+
+    [_webView setPolicyDelegate:self];
     self.webView.frameLoadDelegate = self;
+    self.webView.resourceLoadDelegate = self;
     _tmpFileUrl = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"/.duosuccess_browser.mid"];
     
     
@@ -92,7 +94,6 @@ int oneHour;
     self.toolbar.leftItems = @[backItem, fwdItem];
     
     
-    self.toolbar.rightItems = @[];
     [self.toolbar setItemSelectionHandler:^(KFToolbarItemSelectionType selectionType, KFToolbarItem *toolbarItem, NSUInteger tag)
      {
          switch (tag)
@@ -186,17 +187,37 @@ int oneHour;
     }
 }
 
-- (void)webView:(WebView *)sender didStartProvisionalLoadForFrame:(WebFrame *)frame{
-    [[DsMusicPlayer sharedInstance] stopMedia];
-    [self clearTmpFile];
+- (void)webView:(WebView *)webView decidePolicyForNewWindowAction:(NSDictionary *)actionInformation request:(NSURLRequest *)request newFrameName:(NSString *)frameName decisionListener:(id < WebPolicyDecisionListener >)listener
+{
+    [self.webView.mainFrame loadRequest:request];
+    [listener ignore];
 }
 
 
+- (void)webView:(WebView *)sender didStartProvisionalLoadForFrame:(WebFrame *)frame{
+    self.urlBar.addressString = self.webView.mainFrameURL;
+    [[DsMusicPlayer sharedInstance] stopMedia];
+    [self clearTmpFile];
+    [self.oneHourTimer invalidate];
+}
+
+-(NSURLRequest*) webView:(WebView*)webview resource:(id)sender willSendRequest:(NSURLRequest*)request redirectResponse:(NSURLResponse*)redirectresponse fromDataSource:(WebDataSource*)dataSource {
+    
+    NSString *strUrl = request.URL.absoluteString;
+    if([strUrl rangeOfString:@"duosuccess"].location != NSNotFound){
+        if([strUrl rangeOfString:@"https"].location != 0 ){
+            NSString *httpsUrl = [strUrl stringByReplacingOccurrencesOfString:@"http" withString:@"https"];
+            NSLog(@"Url is changed to https %@", httpsUrl);
+            self.urlBar.addressString = httpsUrl;
+            return [NSURLRequest requestWithURL:[NSURL URLWithString:httpsUrl]];
+        }
+    }
+    
+    return request;
+}
+
 - (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame{
     NSLog(@"did finish load for frame.");
-    
-    
-    
     
     NSString *strExtractMidJs = @"document.querySelector('embed').src";
     NSString *stopMusicJs = @"window.stopmusic = function(){}";
@@ -217,9 +238,7 @@ int oneHour;
     
 }
 
--(void)timerFired{
-    NSLog(@"timer fired.");
-}
+
 -(void)startTheBackgroundMusic: (NSString*)midiUrl{
     if(midiUrl && ![midiUrl isEqualToString:@""]){
         NSLog(@"midi url found %@.", midiUrl);

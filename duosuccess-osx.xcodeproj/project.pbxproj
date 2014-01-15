@@ -32,14 +32,15 @@
 		BDB76AA818869EDA00711896 /* CoreAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB76AA718869EDA00711896 /* CoreAudioKit.framework */; };
 		BDB76AAA18869F1E00711896 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB76AA918869F1E00711896 /* AudioUnit.framework */; };
 		BDB76AAC18869F4E00711896 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB76AAB18869F4E00711896 /* AudioToolbox.framework */; };
+		BDB76AB31886D01B00711896 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDB76AB21886D01B00711896 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D1706A816EA342F008920CC /* KFURLBarDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KFURLBarDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D1706A816EA342F008920CC /* duosuccess-osxDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "duosuccess-osxDemo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D1706AB16EA342F008920CC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1D1706AE16EA342F008920CC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		1D1706B016EA342F008920CC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D1706B316EA342F008920CC /* KFURLBar-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KFURLBar-Info.plist"; sourceTree = "<group>"; };
+		1D1706B316EA342F008920CC /* duosuccess-osx-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "duosuccess-osx-Info.plist"; sourceTree = "<group>"; };
 		1D1706B516EA342F008920CC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1D1706B716EA342F008920CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1D1706B916EA342F008920CC /* KFURLBar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KFURLBar-Prefix.pch"; sourceTree = "<group>"; };
@@ -54,8 +55,8 @@
 		1D200A5E17FD7FB5005B6D60 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		1D42C72F17FEE309009E0EAD /* KFWebKitProgressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KFWebKitProgressController.h; path = KFURLBar/KFWebKitProgressController.h; sourceTree = "<group>"; };
 		1D42C73017FEE309009E0EAD /* KFWebKitProgressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KFWebKitProgressController.m; path = KFURLBar/KFWebKitProgressController.m; sourceTree = "<group>"; };
-		7B6996301819533F00CAD9E2 /* libKFURLBar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libKFURLBar.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B6996351819533F00CAD9E2 /* KFURLBar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KFURLBar-Prefix.pch"; sourceTree = "<group>"; };
+		7B6996301819533F00CAD9E2 /* libduosuccess-osx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libduosuccess-osx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B6996351819533F00CAD9E2 /* duosuccess-osx-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "duosuccess-osx-Prefix.pch"; sourceTree = "<group>"; };
 		BDB76A971886928B00711896 /* KFToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFToolbar.h; sourceTree = "<group>"; };
 		BDB76A981886928B00711896 /* KFToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFToolbar.m; sourceTree = "<group>"; };
 		BDB76A991886928B00711896 /* KFToolbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFToolbarItem.h; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 		BDB76AA718869EDA00711896 /* CoreAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioKit.framework; path = System/Library/Frameworks/CoreAudioKit.framework; sourceTree = SDKROOT; };
 		BDB76AA918869F1E00711896 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		BDB76AAB18869F4E00711896 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		BDB76AB21886D01B00711896 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = KFURLBarDemo/Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		1D17069F16EA342F008920CC = {
 			isa = PBXGroup;
 			children = (
+				BDB76AB21886D01B00711896 /* Images.xcassets */,
 				BDB76AAB18869F4E00711896 /* AudioToolbox.framework */,
 				BDB76AA918869F1E00711896 /* AudioUnit.framework */,
 				BDB76AA718869EDA00711896 /* CoreAudioKit.framework */,
@@ -118,8 +121,8 @@
 		1D1706A916EA342F008920CC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D1706A816EA342F008920CC /* KFURLBarDemo.app */,
-				7B6996301819533F00CAD9E2 /* libKFURLBar.a */,
+				1D1706A816EA342F008920CC /* duosuccess-osxDemo.app */,
+				7B6996301819533F00CAD9E2 /* libduosuccess-osx.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,7 +155,7 @@
 		1D1706B216EA342F008920CC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1D1706B316EA342F008920CC /* KFURLBar-Info.plist */,
+				1D1706B316EA342F008920CC /* duosuccess-osx-Info.plist */,
 				1D1706B416EA342F008920CC /* InfoPlist.strings */,
 				1D1706B716EA342F008920CC /* main.m */,
 				1D1706B916EA342F008920CC /* KFURLBar-Prefix.pch */,
@@ -178,7 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				1D1706AA16EA342F008920CC /* Frameworks */,
-				7B6996351819533F00CAD9E2 /* KFURLBar-Prefix.pch */,
+				7B6996351819533F00CAD9E2 /* duosuccess-osx-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			path = KFURLBar;
@@ -200,9 +203,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1D1706A716EA342F008920CC /* KFURLBarDemo */ = {
+		1D1706A716EA342F008920CC /* duosuccess-osxDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D1706C816EA342F008920CC /* Build configuration list for PBXNativeTarget "KFURLBarDemo" */;
+			buildConfigurationList = 1D1706C816EA342F008920CC /* Build configuration list for PBXNativeTarget "duosuccess-osxDemo" */;
 			buildPhases = (
 				1D1706A416EA342F008920CC /* Sources */,
 				1D1706A516EA342F008920CC /* Frameworks */,
@@ -212,14 +215,14 @@
 			);
 			dependencies = (
 			);
-			name = KFURLBarDemo;
+			name = "duosuccess-osxDemo";
 			productName = KFURLBar;
-			productReference = 1D1706A816EA342F008920CC /* KFURLBarDemo.app */;
+			productReference = 1D1706A816EA342F008920CC /* duosuccess-osxDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7B69962F1819533F00CAD9E2 /* KFURLBar */ = {
+		7B69962F1819533F00CAD9E2 /* duosuccess-osx */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7B69964C1819534000CAD9E2 /* Build configuration list for PBXNativeTarget "KFURLBar" */;
+			buildConfigurationList = 7B69964C1819534000CAD9E2 /* Build configuration list for PBXNativeTarget "duosuccess-osx" */;
 			buildPhases = (
 				7B69962C1819533F00CAD9E2 /* Sources */,
 				7B69962D1819533F00CAD9E2 /* Frameworks */,
@@ -229,9 +232,9 @@
 			);
 			dependencies = (
 			);
-			name = KFURLBar;
+			name = "duosuccess-osx";
 			productName = KFURLBar;
-			productReference = 7B6996301819533F00CAD9E2 /* libKFURLBar.a */;
+			productReference = 7B6996301819533F00CAD9E2 /* libduosuccess-osx.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -243,7 +246,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "KF Interactive";
 			};
-			buildConfigurationList = 1D1706A316EA342F008920CC /* Build configuration list for PBXProject "KFURLBar" */;
+			buildConfigurationList = 1D1706A316EA342F008920CC /* Build configuration list for PBXProject "duosuccess-osx" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -255,8 +258,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D1706A716EA342F008920CC /* KFURLBarDemo */,
-				7B69962F1819533F00CAD9E2 /* KFURLBar */,
+				1D1706A716EA342F008920CC /* duosuccess-osxDemo */,
+				7B69962F1819533F00CAD9E2 /* duosuccess-osx */,
 			);
 		};
 /* End PBXProject section */
@@ -267,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D1706B616EA342F008920CC /* InfoPlist.strings in Resources */,
+				BDB76AB31886D01B00711896 /* Images.xcassets in Resources */,
 				1D1706BC16EA342F008920CC /* Credits.rtf in Resources */,
 				1D1706C216EA342F008920CC /* MainMenu.xib in Resources */,
 			);
@@ -393,12 +397,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "KFURLBar/KFURLBar-Prefix.pch";
-				INFOPLIST_FILE = "KFURLBar/KFURLBar-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "KFURLBar/duosuccess-osx-Prefix.pch";
+				INFOPLIST_FILE = "KFURLBar/duosuccess-osx-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "duosuccess-osxDemo";
 				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = app;
 			};
@@ -408,12 +413,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "KFURLBar/KFURLBar-Prefix.pch";
-				INFOPLIST_FILE = "KFURLBar/KFURLBar-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "KFURLBar/duosuccess-osx-Prefix.pch";
+				INFOPLIST_FILE = "KFURLBar/duosuccess-osx-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "duosuccess-osxDemo";
 				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = app;
 			};
@@ -435,7 +441,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "duosuccess-osx";
 				PUBLIC_HEADERS_FOLDER_PATH = include/$PRODUCT_NAME;
 			};
 			name = Debug;
@@ -453,7 +459,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "duosuccess-osx";
 				PUBLIC_HEADERS_FOLDER_PATH = include/$PRODUCT_NAME;
 			};
 			name = Release;
@@ -461,7 +467,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D1706A316EA342F008920CC /* Build configuration list for PBXProject "KFURLBar" */ = {
+		1D1706A316EA342F008920CC /* Build configuration list for PBXProject "duosuccess-osx" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D1706C616EA342F008920CC /* Debug */,
@@ -470,7 +476,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1D1706C816EA342F008920CC /* Build configuration list for PBXNativeTarget "KFURLBarDemo" */ = {
+		1D1706C816EA342F008920CC /* Build configuration list for PBXNativeTarget "duosuccess-osxDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D1706C916EA342F008920CC /* Debug */,
@@ -479,7 +485,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7B69964C1819534000CAD9E2 /* Build configuration list for PBXNativeTarget "KFURLBar" */ = {
+		7B69964C1819534000CAD9E2 /* Build configuration list for PBXNativeTarget "duosuccess-osx" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7B69964D1819534000CAD9E2 /* Debug */,
