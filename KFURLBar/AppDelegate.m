@@ -39,6 +39,7 @@
 @property (weak) IBOutlet WebView *webView;
 @property (weak) IBOutlet KFToolbar *toolbar;
 
+@property (weak) IBOutlet NSTextField *remainsLabel;
 
 @property (nonatomic) float progress;
 
@@ -62,6 +63,7 @@ int oneHour;
 {
     oneHour = 60*60;
     _mainUrl = @"https://www.duosuccess.com";
+    [_remainsLabel setStringValue:@""];
     self.window.delegate = self;
     
     self.webView.frameLoadDelegate = self;
@@ -80,14 +82,17 @@ int oneHour;
     [reloadButton setAction:@selector(reloadURL:)];
     self.urlBar.leftItems = @[reloadButton];
     
-    KFToolbarItem *addItem = [KFToolbarItem toolbarItemWithIcon:[NSImage imageNamed:NSImageNameLeftFacingTriangleTemplate] tag:0];
-    addItem.toolTip = @"Back";
+    KFToolbarItem *backItem = [KFToolbarItem toolbarItemWithIcon:[NSImage imageNamed:NSImageNameLeftFacingTriangleTemplate] tag:0];
+    backItem.toolTip = @"Back";
     
-    KFToolbarItem *removeItem = [KFToolbarItem toolbarItemWithIcon:[NSImage imageNamed:NSImageNameRightFacingTriangleTemplate] tag:1];
-    removeItem.toolTip = @"Forward";
+    KFToolbarItem *fwdItem = [KFToolbarItem toolbarItemWithIcon:[NSImage imageNamed:NSImageNameRightFacingTriangleTemplate] tag:1];
+    fwdItem.toolTip = @"Forward";
     
     
-    self.toolbar.leftItems = @[addItem, removeItem];
+    self.toolbar.leftItems = @[backItem, fwdItem];
+    
+    
+    self.toolbar.rightItems = @[];
     [self.toolbar setItemSelectionHandler:^(KFToolbarItemSelectionType selectionType, KFToolbarItem *toolbarItem, NSUInteger tag)
      {
          switch (tag)
@@ -192,13 +197,23 @@ int oneHour;
     
     
     
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(timerFired) userInfo:nil repeats:NO];
+    
     NSString *strExtractMidJs = @"document.querySelector('embed').src";
     NSString *stopMusicJs = @"window.stopmusic = function(){}";
     
     NSString *midiUrl = [self.webView stringByEvaluatingJavaScriptFromString:strExtractMidJs];
+    
+    _elapsed = 0;
+    _remains = oneHour;
+    if(midiUrl && ![midiUrl isEqualToString:@""]){
+        _oneHourTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                         target:self
+                                                       selector:@selector(handleOneHourTimer)
+                                                       userInfo:nil
+                                                        repeats:YES];
+    }
     [NSThread detachNewThreadSelector:@selector(startTheBackgroundMusic:) toTarget:self withObject:midiUrl];
-  
+    
     
 }
 
@@ -213,16 +228,9 @@ int oneHour;
         NSLog(@"Saving to %@.", _tmpFileUrl);
         [midiContents writeToFile:_tmpFileUrl atomically:true ];
         DsMusicPlayer *mp = [DsMusicPlayer sharedInstance];
+        
         [mp playMedia:(_tmpFileUrl)];
         
-        _oneHourTimer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                        target:self
-                                                      selector:@selector(handleOneHourTimer)
-                                                      userInfo:nil
-                                                       repeats:YES];
-        _elapsed = 0;
-        _remains = oneHour;
-
     }
     
 }
@@ -239,6 +247,7 @@ int oneHour;
 }
 
 -(void) handleOneHourTimer{
+    NSLog(@" handle one hour.");
     self.elapsed++;
     self.remains--;
     if(self.remains<0){
@@ -248,9 +257,15 @@ int oneHour;
         NSLog(@"1 hour arrived, calling music stop.");
         [[DsMusicPlayer sharedInstance] stopMedia];
         [self clearTmpFile];
-
+        
+    }else{
+        long remainsMins = _remains/60;
+        long remainsSecs = _remains-(remainsMins*60);
+        NSString *remainsDisplay = [NSString stringWithFormat:@"%lu:%02lu", remainsMins, remainsSecs];
+        NSLog(@"remains %@", remainsDisplay);
+        [_remainsLabel setStringValue: remainsDisplay];
     }
-
+    
     
 }
 
