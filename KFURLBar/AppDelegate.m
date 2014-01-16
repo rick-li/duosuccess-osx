@@ -220,9 +220,11 @@ int oneHour;
     NSLog(@"did finish load for frame.");
     [self.remainsLabel setStringValue:@""];
     NSString *strExtractMidJs = @"document.querySelector('embed').src";
+    NSString *strRemoveMidJs = @"document.querySelector('embed').Stop()";
     NSString *stopMusicJs = @"window.stopmusic = function(){}";
     
     NSString *midiUrl = [self.webView stringByEvaluatingJavaScriptFromString:strExtractMidJs];
+    [self.webView stringByEvaluatingJavaScriptFromString:strRemoveMidJs];
     
     _elapsed = 0;
     _remains = oneHour;
