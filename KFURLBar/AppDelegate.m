@@ -196,9 +196,7 @@ int oneHour;
 
 - (void)webView:(WebView *)sender didStartProvisionalLoadForFrame:(WebFrame *)frame{
     self.urlBar.addressString = self.webView.mainFrameURL;
-    [[DsMusicPlayer sharedInstance] stopMedia];
-    [self clearTmpFile];
-    [self.oneHourTimer invalidate];
+    [self stopMusic];
 }
 
 -(NSURLRequest*) webView:(WebView*)webview resource:(id)sender willSendRequest:(NSURLRequest*)request redirectResponse:(NSURLResponse*)redirectresponse fromDataSource:(WebDataSource*)dataSource {
@@ -221,7 +219,6 @@ int oneHour;
     [self.remainsLabel setStringValue:@""];
     NSString *strExtractMidJs = @"document.querySelector('embed').src";
     NSString *strRemoveMidJs = @"document.querySelector('embed').Stop()";
-    NSString *stopMusicJs = @"window.stopmusic = function(){}";
     
     NSString *midiUrl = [self.webView stringByEvaluatingJavaScriptFromString:strExtractMidJs];
     [self.webView stringByEvaluatingJavaScriptFromString:strRemoveMidJs];
@@ -256,11 +253,19 @@ int oneHour;
     
 }
 
+-(void) stopMusic{
+    [[DsMusicPlayer sharedInstance] stopMedia];
+    [self clearTmpFile];
+    [_oneHourTimer invalidate];
+}
+- (void)windowWillClose:(NSNotification *)notification{
+    [self stopMusic];
+}
 -(void)clearTmpFile {
     NSError *error;
     [[NSFileManager defaultManager] removeItemAtURL:[NSURL fileURLWithPath: _tmpFileUrl] error:&error];
     if(error){
-        NSLog(@"Failed to remove %@.", error.description);
+//        NSLog(@"Failed to remove %@.", error.description);
     }else{
         
         NSLog(@"Tmp file has been removed.");
@@ -268,7 +273,6 @@ int oneHour;
 }
 
 -(void) handleOneHourTimer{
-    NSLog(@" handle one hour.");
     self.elapsed++;
     self.remains--;
     if(self.remains<0){
@@ -276,8 +280,7 @@ int oneHour;
     }
     if(self.elapsed >= oneHour){
         NSLog(@"1 hour arrived, calling music stop.");
-        [[DsMusicPlayer sharedInstance] stopMedia];
-        [self clearTmpFile];
+        [self stopMusic];
         
     }else{
         long remainsMins = _remains/60;
